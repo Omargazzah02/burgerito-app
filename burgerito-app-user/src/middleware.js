@@ -5,6 +5,7 @@ export async function middleware(req) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
   const { pathname } = req.nextUrl;
 
+
   // 🔹 Si l'utilisateur est connecté et essaie d'accéder à /login ou /register → redirection vers /
   if (token && ["/login", "/register"].includes(pathname)) {
     return NextResponse.redirect(new URL("/", req.url));
